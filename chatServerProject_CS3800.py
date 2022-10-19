@@ -26,3 +26,4 @@ while True:
                     break
         except ConnectionResetError as e:
             print("Disconnected ")
+#asdfasdlkfj;lasdhjfl;asjdlf
