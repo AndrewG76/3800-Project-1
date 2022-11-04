@@ -1,6 +1,8 @@
 import enc_interface as ei
 import key_repository as kr
 
+# This file is just to generate the files for the keys
+
 sPrKey = ei.genKey()
 cPrKey = ei.genKey()
 sPuKey = sPrKey.public_key()

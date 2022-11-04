@@ -3,12 +3,6 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 
-PASSWORD = "mypassword"
-
-# def hasKeyOnFile(user: str):
-#     return exists(f"{cwd}/keys/{user}.pem")
-
-
 def getHash(section):
     digest = hashes.Hash(hashes.SHA256())
     digest.update(section.encode())
@@ -70,25 +64,3 @@ def verify(signature, message, pub_key):
         ),
         hashes.SHA256()
     )
-
-# _saveKey(f"{cwd}/keys/server_keys/2022-10-26.pem", _genKey())
-
-# def registerNewUserKeys(user):
-#     private_key = _genKey()
-#     _saveUserKey(user, private_key)
-
-# ###
-# def _saveUserKey(user, key, isPriv=True):
-#     _saveKey(f"{cwd}/keys/user_keys/{user}.pem", key, isPriv)
-
-# def _loadUserKey(user, isPriv):
-#     return _loadKey(f"{cwd}/keys/user_keys/{user}.pem", isPriv)
-
-# def _saveServerKey(date, isForSig, key, isPriv=True):
-#     purpose = "sig" if isForSig else "enc"
-#     _saveKey(f"{cwd}/keys/server_keys/{date}_{purpose}.pem", key, isPriv)
-
-# def _loadServerKey(date, isForSig, isPriv=True):
-#     purpose = "sig" if isForSig else "enc"
-#     return _loadKey(f"{cwd}/keys/server_keys/{date}_{purpose}.pem", isPriv)
-###

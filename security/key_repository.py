@@ -3,8 +3,10 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.backends.openssl.rsa import _RSAPrivateKey
+
 PASSWORD = b"password123"
 
+# This file is just to store and load keys from files (persistant storage)
 
 def loadKey(path, isPriv=True):
     with open(path, "rb") as key_file:
