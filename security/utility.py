@@ -1,9 +1,10 @@
 from cryptography.fernet import Fernet
 import os
 
+
 def loadKey():
-    cwd = "security2.0/" if \
-        os.path.exists("security2.0") else ""
+    cwd = "security/" if \
+        os.path.exists("security") else ""
     key = None
     with open(cwd + "key", "rb") as file:
         key = file.read()
@@ -21,9 +22,9 @@ def decrypt(token):
     message = f.decrypt(token)
     return message
 
-message = b"Hello friends! Respond if you got my message please"
+# message = b"Hello friends! Respond if you got my message please"
 
-token = encrypt(message)
-message = decrypt(token)
-print(token)
-print(message)
+# token = encrypt(message)
+# message = decrypt(token)
+# print(token)
+# print(message)
