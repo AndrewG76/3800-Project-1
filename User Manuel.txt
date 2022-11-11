@@ -1,0 +1,9 @@
+Introduction:
+            Secure Client-Server Chat Application, which allows multiple clients talk to each other via end-server
+
+start the program:
+            Step 1 : check the environment (ensure the python3 is installed, if not use the following link to get it install: https://www.python.org/downloads/)
+            Step 2 : Double-click the server-side-code, make sure it is up and running, remember the full IP address of the server, which also includes the ports number
+            Step 3 : Double-click the client-side-code, use the same server address(with full ports number) for each clients to login to the chart room application
+            Step 4 : create and enter the name to use in the chart application
+            Step 5 : you might either close the chart windows or press "Ctrl + c" or "Ctrl + d" to exit the program.
