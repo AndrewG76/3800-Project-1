@@ -3,14 +3,14 @@ import threading
 import time
 from security.utility import encrypt, decrypt, loadAESKey, deserializePubKey, rsaEncrypt
 
-host = '127.0.0.1'
-BUFFER_SIZE = 4096
-port = 1234
+owner = '127.0.0.1'
+MAX_BUFFER_SIZE = 4096
+portNum = 1234
 SEP = "|||"
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_socket.bind((host, port))
-server_socket.listen()
+server.bind((owner, portNum))
+server.listen()
 
 connectedClients = []
 usernames = []
@@ -20,7 +20,7 @@ def secure_send(client,data):
     client.send(b"AES_ENCRYPTED" + SEP.encode() + token)
 
 def secure_recv(client,buffer_size):
-    token = client.recv(BUFFER_SIZE)
+    token = client.recv(MAX_BUFFER_SIZE)
     message = decrypt(token)
     return message
 
@@ -31,7 +31,7 @@ def broadcast(message): #function to send messages to everybody else
 def handle_client(client): #catches and handles exceptions of each client computer, the client parameter is the person trying to send the message
     while True:
         try:
-            message = secure_recv(client, BUFFER_SIZE) #BUFFER_SIZE is the maximum # of bytes a server can receive from a client
+            message = secure_recv(client, MAX_BUFFER_SIZE) #BUFFER_SIZE is the maximum # of bytes a server can receive from a client
             broadcast(message) #if we made it this far, we want to display it to everybody else
         except:
             #in the case of errors and exceptions, we should identify the client that we need to remove and remove their username too
@@ -51,11 +51,11 @@ def receive(): #this is the primary function to receive client connections
     try:
             
         while True:
-            print('Server is opened and now listening.')
-            client, address = server_socket.accept() #the server.accept() method means it's waiting around constantly for any connections from any connection and it provides the address and connection of the client
+            print(' Server is opened and now listening... ')
+            client, address = server.accept() #the server.accept() method means it's waiting around constantly for any connections from any connection and it provides the address and connection of the client
             #once the line above catches something trying to connect, we should notify that a connection was established with somebody
             client.send(b"NOT_ENCRYPTED" + SEP.encode() + b"INITIALIZE_SECURITY")
-            client_pub_key = deserializePubKey(d(client.recv(BUFFER_SIZE)))
+            client_pub_key = deserializePubKey(d(client.recv(MAX_BUFFER_SIZE)))
             aes_key = d(loadAESKey())
             c = rsaEncrypt(aes_key, client_pub_key)
             client.send(d("RSA_ENCRYPTED".encode() + SEP.encode() + "KEY".encode() + SEP.encode() + c))
@@ -63,10 +63,11 @@ def receive(): #this is the primary function to receive client connections
 
             print(f'connection is established with {str(address)}')
             secure_send(client, "GET_USERNAME".encode()) #this message we send to that client in particular is like letting them know "hey, you're in! now what do you want to be called?"
-            username = d(secure_recv(client, BUFFER_SIZE)) #whatever they send back will be saved
+            username = d(secure_recv(client, MAX_BUFFER_SIZE)) #whatever they send back will be saved
             usernames.append(username) #and then we add that new username into the list of usernames
             connectedClients.append(client)
-            print(f'The username of the client is {username}'.encode('utf-8'))
+            username_convert = username.decode()
+            print(f'The username of the client is {username_convert}')
             broadcast(f'{username} has connected to the chat room'.encode('utf-8'))
             secure_send(client, 'You are now connected.'.encode('utf-8'))
 
