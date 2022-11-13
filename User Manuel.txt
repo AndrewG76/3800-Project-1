@@ -1,9 +1,13 @@
-Introduction:
+Brief Description:
             Secure Client-Server Chat Application, which allows multiple clients talk to each other via end-server
 
-start the program:
-            Step 1 : check the environment (ensure the python3 is installed, if not use the following link to get it install: https://www.python.org/downloads/)
-            Step 2 : Double-click the server-side-code, make sure it is up and running, remember the full IP address of the server, which also includes the ports number
-            Step 3 : Double-click the client-side-code, use the same server address(with full ports number) for each clients to login to the chart room application
-            Step 4 : create and enter the name to use in the chart application
-            Step 5 : you might either close the chart windows or press "Ctrl + c" or "Ctrl + d" to exit the program.
+Instruction:
+-	Since the project is coded in Python, Python is required to run its code. To demonstrate it working please run a server program and two clients. To do this, begin by opening three terminal windows and enter the project folder in each of them.
+-	In the first terminal, enter the “server” folder and run “python server.py.”
+-	In the second and third terminals, enter the “client” folder and run “python client.py”
+-	Make sure you have all the files together since they have dependencies on each other for the security function implementation.
+-	Alternatively, you can right-click the file names and open in terminal by themselves in the same previous steps.
+-	First, server should be run first as it waits for the clients to eventually connect on the host
+-	Second, then run the client program as many times as you like in order to create users as many as up to 10 in order to chat with each other in the server room.
+-	Third, any additional instructions will likely be provided in the program itself like prompting the users for a username/alias they would like to use.
+-	Finally, send messages in the terminal to your heart’s content without having to wait or face any delay.
