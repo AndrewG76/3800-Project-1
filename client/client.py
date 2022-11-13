@@ -42,8 +42,9 @@ def client_receive():
                 secure_send(username.encode('utf-8'))
             elif decrypt_successful:
                 print(message.decode('utf-8')) #because this message is not being sent to the server anymore, we have the ability to still use our terminal
-    except:
+    except Exception as e:
         print('Error encountered in client_receive thread') #generic in case something weird happens
+        print(e)
         client.close() #we close our client if something weird happens and then this information gets relayed on over to the other clients via the server's emessages
         
 
