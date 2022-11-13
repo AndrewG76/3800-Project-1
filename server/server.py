@@ -5,7 +5,7 @@ from security.utility import encrypt, decrypt, loadAESKey, deserializePubKey, rs
 
 host = '127.0.0.1'
 BUFFER_SIZE = 4096
-port = 1234
+port = 8888
 SEP = "|||"
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -66,7 +66,9 @@ def receive(): #this is the primary function to receive client connections
             username = d(secure_recv(client, BUFFER_SIZE)) #whatever they send back will be saved
             usernames.append(username) #and then we add that new username into the list of usernames
             connectedClients.append(client)
-            print(f'The username of the client is {username}'.encode('utf-8'))
+
+            usernameConvert = username.decode()
+            print(f'The username of the client is {usernameConvert}')
             broadcast(f'{username} has connected to the chat room'.encode('utf-8'))
             secure_send(client, 'You are now connected.'.encode('utf-8'))
 

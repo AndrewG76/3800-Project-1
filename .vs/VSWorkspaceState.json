@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\security",
+    "\\server"
   ],
-  "SelectedNode": "\\server_code.py",
+  "SelectedNode": "\\client\\client.py",
   "PreviewInSolutionExplorer": false
 }

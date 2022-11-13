@@ -9,7 +9,7 @@ SEP = b"|||"
 BUFFER_SIZE = 4096
 username = input('Please input a username: ')
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(('127.0.0.1', 1234))
+client.connect(('127.0.0.1', 8888))
 
 def secure_send(data):
     token = encrypt(data)
